@@ -5,9 +5,6 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Жергілікті желіні орнату және талдау</title>
   <style>
-    /* --------------------
-       Негізгі стильдер
-    -------------------- */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
     }
@@ -18,7 +15,6 @@
       color: #e4e4e4;
       line-height: 1.8;
       scroll-behavior: smooth;
-      transition: background 0.5s ease;
     }
 
     /* --------------------
@@ -144,6 +140,51 @@
     }
 
     /* --------------------
+       Support Section
+    -------------------- */
+    .support-form {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      margin-top: 15px;
+    }
+
+    .support-form input,
+    .support-form textarea {
+      background: #1a1a1a;
+      color: #e4e4e4;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 6px;
+      padding: 10px 12px;
+      font-size: 1rem;
+      resize: none;
+      transition: 0.3s;
+    }
+
+    .support-form input:focus,
+    .support-form textarea:focus {
+      outline: none;
+      border-color: #cce7ff;
+      box-shadow: 0 0 5px rgba(204,231,255,0.3);
+    }
+
+    .support-form button {
+      background: #cce7ff;
+      color: #000;
+      border: none;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      transition: 0.3s;
+    }
+
+    .support-form button:hover {
+      background: #b3ffe0;
+      transform: scale(1.03);
+    }
+
+    /* --------------------
        Footer
     -------------------- */
     footer {
@@ -200,6 +241,7 @@
       <a href="#ip">IP</a>
       <a href="#sniffer">Wireshark</a>
       <a href="#result">Қорытынды</a>
+      <a href="#support">Қолдау</a>
     </nav>
   </header>
 
@@ -253,6 +295,21 @@ sudo ip route add default via 192.168.1.1</pre>
     <h2>4. Қорытынды</h2>
     <p>Жергілікті желі — желілік технологияларды түсінудің негізі. IP-адрестеу және Wireshark көмегімен желіні тиімді талдауға болады.</p>
     <p>Бұл білімдер желілік әкімші немесе киберқауіпсіздік маманы болуға алғашқы қадам.</p>
+  </section>
+
+  <!-- --------------------
+        Support Section
+  -------------------- -->
+  <section id="support">
+    <h2>5. Қолдау (Поддержка)</h2>
+    <p>Егер сізде сұрақтар, ұсыныстар немесе көмек қажет болса — төмендегі форманы толтырыңыз.</p>
+
+    <form class="support-form" onsubmit="event.preventDefault(); alert('Хабарлама жіберілді!');">
+      <input type="text" placeholder="Атыңыз" required>
+      <input type="email" placeholder="Электрондық пошта" required>
+      <textarea rows="4" placeholder="Сіздің хабарламаңыз..."></textarea>
+      <button type="submit">Жіберу</button>
+    </form>
   </section>
 
   <footer>
