@@ -5,17 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Жергілікті желіні орнату және талдау</title>
   <style>
+    /* --------------------
+       Негізгі стильдер
+    -------------------- */
     * {
       margin: 0; padding: 0; box-sizing: border-box;
     }
 
     body {
-      font-family: "Times New Roman", serif;
-      background: #0e0e0e;
-      color: #e4e4e4;
+      font-family: "Inter", "Segoe UI", Roboto, sans-serif;
+      background: #ffffff;
+      color: #222;
       line-height: 1.8;
       scroll-behavior: smooth;
+      transition: background 0.4s ease;
     }
+
+    a { text-decoration: none; }
 
     /* --------------------
        Header
@@ -24,19 +30,23 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(0, 0, 0, 0.9);
-      backdrop-filter: blur(6px);
+      background: rgba(255, 255, 255, 0.9);
+      backdrop-filter: blur(8px);
       text-align: center;
       padding: 25px 0;
-      border-bottom: 1px solid rgba(255,255,255,0.1);
-      animation: fadeDown 0.8s ease;
+      border-bottom: 1px solid #eee;
+      box-shadow: 0 0 0 rgba(0,0,0,0);
+      transition: box-shadow 0.3s ease, background 0.3s ease;
+    }
+
+    header.sticky {
+      box-shadow: 0 2px 10px rgba(0,0,0,0.05);
     }
 
     header h1 {
-      color: #cce7ff;
+      color: #111;
       font-size: 1.9rem;
-      letter-spacing: 1px;
-      transition: color 0.4s ease;
+      letter-spacing: 0.5px;
     }
 
     nav {
@@ -44,89 +54,106 @@
     }
 
     nav a {
-      text-decoration: none;
-      color: #bcbcbc;
+      color: #555;
       margin: 0 15px;
       font-size: 1.05rem;
+      position: relative;
+      transition: color 0.3s;
+    }
+
+    nav a::after {
+      content: "";
+      position: absolute;
+      width: 0%;
+      height: 2px;
+      background: #0078ff;
+      left: 0;
+      bottom: -4px;
       transition: 0.3s;
     }
 
     nav a:hover {
-      color: #cce7ff;
+      color: #0078ff;
+    }
+
+    nav a:hover::after {
+      width: 100%;
     }
 
     /* --------------------
-       Hero banner
+       Hero Section
     -------------------- */
     .hero {
-      background: url('https://upload.wikimedia.org/wikipedia/commons/d/d2/Wireshark_screenshot.png') center/cover no-repeat;
+      background: linear-gradient(120deg, #f5f7fa, #eef2f6);
       height: 55vh;
       display: flex;
       align-items: center;
       justify-content: center;
-      position: relative;
-    }
-
-    .hero::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: rgba(0,0,0,0.6);
-    }
-
-    .hero h2 {
-      position: relative;
-      color: #f5f5f5;
-      font-size: 2.3rem;
+      flex-direction: column;
       text-align: center;
+      padding: 20px;
       animation: fadeUp 1.2s ease;
     }
 
+    .hero h2 {
+      color: #111;
+      font-size: 2.4rem;
+      font-weight: 600;
+      margin-bottom: 10px;
+    }
+
+    .hero p {
+      color: #666;
+      font-size: 1.1rem;
+      max-width: 600px;
+    }
+
     /* --------------------
-       Section design
+       Sections
     -------------------- */
     section {
       max-width: 850px;
-      margin: 60px auto;
-      padding: 35px;
-      background: rgba(255,255,255,0.02);
-      border-radius: 14px;
-      border: 1px solid rgba(255,255,255,0.08);
-      box-shadow: 0 0 15px rgba(255,255,255,0.03);
-      animation: fadeUp 0.8s ease forwards;
+      margin: 70px auto;
+      padding: 40px;
+      background: #fff;
+      border-radius: 16px;
+      border: 1px solid #f0f0f0;
+      box-shadow: 0 3px 20px rgba(0,0,0,0.03);
+      animation: fadeUp 0.9s ease forwards;
       transform: translateY(10px);
       transition: 0.4s;
     }
 
     section:hover {
       transform: translateY(-4px);
-      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+      box-shadow: 0 4px 25px rgba(0,0,0,0.05);
     }
 
     h2 {
-      color: #cce7ff;
+      color: #0078ff;
       font-size: 1.5rem;
       margin-bottom: 15px;
     }
 
     p, li, pre, code {
       font-size: 1.05rem;
+      color: #333;
     }
 
     ul { margin-left: 25px; margin-top: 8px; }
 
     code {
-      background: #1a1a1a;
-      color: #b3ffe0;
+      background: #f7f7f7;
+      color: #0078ff;
       padding: 3px 6px;
-      border-radius: 5px;
+      border-radius: 4px;
       font-family: monospace;
     }
 
     pre {
-      background: #1a1a1a;
-      color: #b3ffe0;
-      border-left: 3px solid #aeefff;
+      background: #f9f9f9;
+      color: #0078ff;
+      border-left: 3px solid #0078ff;
       padding: 12px;
       border-radius: 8px;
       overflow-x: auto;
@@ -135,7 +162,7 @@
 
     hr {
       border: none;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid #eee;
       margin: 40px 0;
     }
 
@@ -151,37 +178,37 @@
 
     .support-form input,
     .support-form textarea {
-      background: #1a1a1a;
-      color: #e4e4e4;
-      border: 1px solid rgba(255,255,255,0.1);
+      background: #f9f9f9;
+      color: #222;
+      border: 1px solid #ddd;
       border-radius: 6px;
-      padding: 10px 12px;
+      padding: 12px 14px;
       font-size: 1rem;
       resize: none;
-      transition: 0.3s;
+      transition: border 0.3s, box-shadow 0.3s;
     }
 
     .support-form input:focus,
     .support-form textarea:focus {
       outline: none;
-      border-color: #cce7ff;
-      box-shadow: 0 0 5px rgba(204,231,255,0.3);
+      border-color: #0078ff;
+      box-shadow: 0 0 6px rgba(0,120,255,0.15);
     }
 
     .support-form button {
-      background: #cce7ff;
-      color: #000;
+      background: #0078ff;
+      color: #fff;
       border: none;
-      padding: 10px 16px;
+      padding: 12px 16px;
       border-radius: 8px;
       cursor: pointer;
-      font-weight: bold;
-      transition: 0.3s;
+      font-weight: 600;
+      transition: background 0.3s, transform 0.2s;
     }
 
     .support-form button:hover {
-      background: #b3ffe0;
-      transform: scale(1.03);
+      background: #005fcc;
+      transform: translateY(-2px);
     }
 
     /* --------------------
@@ -189,10 +216,11 @@
     -------------------- */
     footer {
       text-align: center;
-      color: #aaa;
-      padding: 30px 10px;
+      color: #777;
+      padding: 40px 10px;
       font-size: 0.95rem;
-      border-top: 1px solid rgba(255,255,255,0.1);
+      border-top: 1px solid #eee;
+      margin-top: 60px;
     }
 
     /* --------------------
@@ -202,17 +230,19 @@
       position: fixed;
       top: 20px;
       right: 20px;
-      background: #cce7ff;
-      color: #000;
+      background: #0078ff;
+      color: #fff;
       border: none;
       padding: 8px 14px;
       border-radius: 8px;
-      font-weight: bold;
+      font-weight: 600;
       cursor: pointer;
       transition: 0.3s;
+      box-shadow: 0 2px 6px rgba(0,120,255,0.3);
     }
+
     .lang-toggle:hover {
-      background: #b3ffe0;
+      background: #005fcc;
       transform: scale(1.05);
     }
 
@@ -223,18 +253,13 @@
       from {opacity: 0; transform: translateY(25px);}
       to {opacity: 1; transform: translateY(0);}
     }
-
-    @keyframes fadeDown {
-      from {opacity: 0; transform: translateY(-20px);}
-      to {opacity: 1; transform: translateY(0);}
-    }
   </style>
 </head>
 <body>
 
   <button class="lang-toggle" onclick="toggleLang()">EN / KK</button>
 
-  <header>
+  <header id="header">
     <h1 id="title">Жергілікті желі және IP-адрестеу</h1>
     <nav>
       <a href="#lan">LAN</a>
@@ -247,6 +272,7 @@
 
   <div class="hero">
     <h2 id="hero-text">Қарапайым жергілікті желіні орнату және талдау</h2>
+    <p>Бұл бет жергілікті желіні орнату, IP-адрестеу және Wireshark көмегімен талдау тәсілдерін көрсетеді.</p>
   </div>
 
   <section id="lan">
@@ -265,7 +291,7 @@ HostA (192.168.1.10) --- Switch --- HostB (192.168.1.11)
 
   <section id="ip">
     <h2>2. IP-адрестеу</h2>
-    <p>Әр құрылғыға IP беру — олардың бір-бірін табуы үшін қажет. Мысалы:</p>
+    <p>Әр құрылғыға IP беру — олардың бір-бірін табуы үшін қажет.</p>
     <ul>
       <li>Network: <code>192.168.1.0/24</code></li>
       <li>Router: <code>192.168.1.1</code></li>
@@ -294,20 +320,16 @@ sudo ip route add default via 192.168.1.1</pre>
   <section id="result">
     <h2>4. Қорытынды</h2>
     <p>Жергілікті желі — желілік технологияларды түсінудің негізі. IP-адрестеу және Wireshark көмегімен желіні тиімді талдауға болады.</p>
-    <p>Бұл білімдер желілік әкімші немесе киберқауіпсіздік маманы болуға алғашқы қадам.</p>
   </section>
 
-  <!-- --------------------
-        Support Section
-  -------------------- -->
   <section id="support">
-    <h2>5. Қолдау (Поддержка)</h2>
-    <p>Егер сізде сұрақтар, ұсыныстар немесе көмек қажет болса — төмендегі форманы толтырыңыз.</p>
+    <h2>5. Қолдау</h2>
+    <p>Егер сізде сұрақтар немесе ұсыныстар болса — төмендегі форманы толтырыңыз.</p>
 
     <form class="support-form" onsubmit="event.preventDefault(); alert('Хабарлама жіберілді!');">
       <input type="text" placeholder="Атыңыз" required>
       <input type="email" placeholder="Электрондық пошта" required>
-      <textarea rows="4" placeholder="Сіздің хабарламаңыз..."></textarea>
+      <textarea rows="4" placeholder="Хабарламаңыз..."></textarea>
       <button type="submit">Жіберу</button>
     </form>
   </section>
@@ -317,6 +339,12 @@ sudo ip route add default via 192.168.1.1</pre>
   </footer>
 
   <script>
+    const header = document.getElementById("header");
+    window.addEventListener("scroll", () => {
+      if (window.scrollY > 50) header.classList.add("sticky");
+      else header.classList.remove("sticky");
+    });
+
     const content = {
       kk: {
         title: "Жергілікті желі және IP-адрестеу",
