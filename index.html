@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="kk">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Жергілікті желіні орнату және талдау</title>
+  <style>
+    /* --------------------
+       Негізгі стильдер
+    -------------------- */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+
+    body {
+      font-family: "Times New Roman", serif;
+      background: #0e0e0e;
+      color: #e4e4e4;
+      line-height: 1.8;
+      scroll-behavior: smooth;
+      transition: background 0.5s ease;
+    }
+
+    /* --------------------
+       Header
+    -------------------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(6px);
+      text-align: center;
+      padding: 25px 0;
+      border-bottom: 1px solid rgba(255,255,255,0.1);
+      animation: fadeDown 0.8s ease;
+    }
+
+    header h1 {
+      color: #cce7ff;
+      font-size: 1.9rem;
+      letter-spacing: 1px;
+      transition: color 0.4s ease;
+    }
+
+    nav {
+      margin-top: 12px;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #bcbcbc;
+      margin: 0 15px;
+      font-size: 1.05rem;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #cce7ff;
+    }
+
+    /* --------------------
+       Hero banner
+    -------------------- */
+    .hero {
+      background: url('https://upload.wikimedia.org/wikipedia/commons/d/d2/Wireshark_screenshot.png') center/cover no-repeat;
+      height: 55vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+    }
+
+    .hero h2 {
+      position: relative;
+      color: #f5f5f5;
+      font-size: 2.3rem;
+      text-align: center;
+      animation: fadeUp 1.2s ease;
+    }
+
+    /* --------------------
+       Section design
+    -------------------- */
+    section {
+      max-width: 850px;
