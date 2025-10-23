@@ -91,3 +91,192 @@
     -------------------- */
     section {
       max-width: 850px;
+      margin: 60px auto;
+      padding: 35px;
+      background: rgba(255,255,255,0.02);
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.08);
+      box-shadow: 0 0 15px rgba(255,255,255,0.03);
+      animation: fadeUp 0.8s ease forwards;
+      transform: translateY(10px);
+      transition: 0.4s;
+    }
+
+    section:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 0 20px rgba(255,255,255,0.05);
+    }
+
+    h2 {
+      color: #cce7ff;
+      font-size: 1.5rem;
+      margin-bottom: 15px;
+    }
+
+    p, li, pre, code {
+      font-size: 1.05rem;
+    }
+
+    ul { margin-left: 25px; margin-top: 8px; }
+
+    code {
+      background: #1a1a1a;
+      color: #b3ffe0;
+      padding: 3px 6px;
+      border-radius: 5px;
+      font-family: monospace;
+    }
+
+    pre {
+      background: #1a1a1a;
+      color: #b3ffe0;
+      border-left: 3px solid #aeefff;
+      padding: 12px;
+      border-radius: 8px;
+      overflow-x: auto;
+      margin-top: 10px;
+    }
+
+    hr {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      margin: 40px 0;
+    }
+
+    /* --------------------
+       Footer
+    -------------------- */
+    footer {
+      text-align: center;
+      color: #aaa;
+      padding: 30px 10px;
+      font-size: 0.95rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    /* --------------------
+       Language toggle
+    -------------------- */
+    .lang-toggle {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      background: #cce7ff;
+      color: #000;
+      border: none;
+      padding: 8px 14px;
+      border-radius: 8px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+    .lang-toggle:hover {
+      background: #b3ffe0;
+      transform: scale(1.05);
+    }
+
+    /* --------------------
+       Animations
+    -------------------- */
+    @keyframes fadeUp {
+      from {opacity: 0; transform: translateY(25px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+
+    @keyframes fadeDown {
+      from {opacity: 0; transform: translateY(-20px);}
+      to {opacity: 1; transform: translateY(0);}
+    }
+  </style>
+</head>
+<body>
+
+  <button class="lang-toggle" onclick="toggleLang()">EN / KK</button>
+
+  <header>
+    <h1 id="title">Жергілікті желі және IP-адрестеу</h1>
+    <nav>
+      <a href="#lan">LAN</a>
+      <a href="#ip">IP</a>
+      <a href="#sniffer">Wireshark</a>
+      <a href="#result">Қорытынды</a>
+    </nav>
+  </header>
+
+  <div class="hero">
+    <h2 id="hero-text">Қарапайым жергілікті желіні орнату және талдау</h2>
+  </div>
+
+  <section id="lan">
+    <h2>1. LAN орнату</h2>
+    <p>LAN (Local Area Network) — бірнеше компьютерді біріктіріп, ортақ деректермен және интернетпен бөлісуге арналған желі.</p>
+    <ul>
+      <li>Switch немесе Router арқылы байланыс орнату</li>
+      <li>Ethernet немесе Wi-Fi пайдалану</li>
+      <li>Бір IP диапазонында болу</li>
+    </ul>
+    <pre>Топология:
+HostA (192.168.1.10) --- Switch --- HostB (192.168.1.11)
+                         |
+                      Router (192.168.1.1)</pre>
+  </section>
+
+  <section id="ip">
+    <h2>2. IP-адрестеу</h2>
+    <p>Әр құрылғыға IP беру — олардың бір-бірін табуы үшін қажет. Мысалы:</p>
+    <ul>
+      <li>Network: <code>192.168.1.0/24</code></li>
+      <li>Router: <code>192.168.1.1</code></li>
+      <li>Hosts: <code>192.168.1.10</code>, <code>192.168.1.11</code></li>
+    </ul>
+    <pre>Windows:
+netsh interface ipv4 set address name="Ethernet" static 192.168.1.10 255.255.255.0 192.168.1.1
+
+Linux:
+sudo ip addr add 192.168.1.10/24 dev eth0
+sudo ip route add default via 192.168.1.1</pre>
+  </section>
+
+  <section id="sniffer">
+    <h2>3. Wireshark және трафик талдау</h2>
+    <p>Wireshark — желідегі пакеттерді нақты уақытта көріп, талдауға мүмкіндік беретін құрал.</p>
+    <ul>
+      <li>ARP: <code>arp</code></li>
+      <li>ICMP (ping): <code>icmp</code></li>
+      <li>HTTP сұраныстар: <code>http.request.method == "GET"</code></li>
+      <li>DNS: <code>dns</code></li>
+    </ul>
+    <pre>sudo tcpdump -i eth0 host 192.168.1.10 -w capture.pcap</pre>
+  </section>
+
+  <section id="result">
+    <h2>4. Қорытынды</h2>
+    <p>Жергілікті желі — желілік технологияларды түсінудің негізі. IP-адрестеу және Wireshark көмегімен желіні тиімді талдауға болады.</p>
+    <p>Бұл білімдер желілік әкімші немесе киберқауіпсіздік маманы болуға алғашқы қадам.</p>
+  </section>
+
+  <footer>
+    ©️ 2025 | Жоба: Жергілікті желіні орнату және талдау | Автор: Нургазиев Мейрамбек Нурланович
+  </footer>
+
+  <script>
+    const content = {
+      kk: {
+        title: "Жергілікті желі және IP-адрестеу",
+        hero: "Қарапайым жергілікті желіні орнату және талдау",
+      },
+      en: {
+        title: "Local Network Setup and Analysis",
+        hero: "Setting up a Local Network and Traffic Analysis",
+      },
+    };
+
+    let lang = "kk";
+    function toggleLang() {
+      lang = lang === "kk" ? "en" : "kk";
+      document.getElementById("title").innerText = content[lang].title;
+      document.getElementById("hero-text").innerText = content[lang].hero;
+    }
+  </script>
+</body>
+</html>
